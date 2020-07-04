@@ -10,12 +10,13 @@
 // id: 1
 //  type: "CREATE_EVENT"
 //  body: "2020年に東京でオリンピックが開催されます"
+//  status: 
 //}]
 //
 const events = (state = [], action) => {
   switch(action.type) {
     case "CREATE_EVENT":
-      const event = { body: action.body}
+      const event = { body: action.body ,status: action.status}
       const length = state.length
       const id = length === 0 ? 1 : state[length -1].id + 1
       return [...state, {id: id, ...event }] //スプレッド演算子の一番後ろに要素を追加
