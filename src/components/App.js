@@ -2,11 +2,11 @@ import React, { useReducer, useState } from 'react';
 import Event from "./Event"
 import { CREATE_EVENT} from "../actions"
 import reducer from "../reducers/"
-import Amplify from '@aws-amplify/core';
-import awsmobile from '../aws-exports';
-import { withAuthenticator } from '@aws-amplify/ui-react';
+// import Amplify from '@aws-amplify/core';
+// import awsmobile from '../aws-exports';
+// import { withAuthenticator } from '@aws-amplify/ui-react';
 
-Amplify.configure(awsmobile);
+// Amplify.configure(awsmobile);
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, [])
@@ -62,9 +62,10 @@ const App = () => {
     </>
   );
 }
+export default App
 
-export default withAuthenticator(App, {
-  signUpConfig: {
-    hiddenDefaults: ['phone_number']
-  }
-});
+// export default withAuthenticator(App, {
+//   signUpConfig: {
+//     hiddenDefaults: ['phone_number']
+//   }
+// });
