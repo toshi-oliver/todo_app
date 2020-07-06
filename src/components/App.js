@@ -34,14 +34,13 @@ const App = () => {
         <table>
           <thead>
             <tr>
-              <th>To Do</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             {state.map((event, index) => (<Event key={index} event={event} dispatch={dispatch} />))}
           </tbody>
         </table>
-        <h4>イベント作成フォーム</h4>
         <form>
           <div className="form-group">
             <textarea
@@ -55,9 +54,10 @@ const App = () => {
             className="btn btn-primary"
             onClick={addEvent}
           >
-            イベントを作成する
+            新規作成
           </button>
         </form>
+        <h2>COMPLETED</h2>
       </div>
     </>
   );
