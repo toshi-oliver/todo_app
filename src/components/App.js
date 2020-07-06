@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from 'react';
-
+import Event from "./Event"
 import reducer from "../reducers/"
 import Amplify from '@aws-amplify/core';
 import awsmobile from '../aws-exports';
@@ -7,7 +7,7 @@ import { withAuthenticator } from '@aws-amplify/ui-react';
 
 Amplify.configure(awsmobile);
 
- const App = () => {
+const App = () => {
   const [state, dispatch] = useReducer(reducer, [])
   const [body, setBody] = useState("")
   // const [status, setStatus] = useState("false")
@@ -26,7 +26,7 @@ Amplify.configure(awsmobile);
 
   return (
     <>
-      <div className="container-fluid">
+      <div className="container">
         <h2>
           LISTS
         </h2>
@@ -36,6 +36,9 @@ Amplify.configure(awsmobile);
               <th>Body</th>
             </tr>
           </thead>
+          <tbody>
+            {state.map((event, index) => (<Event key={index} event={event} dispatch={dispatch} />))}
+          </tbody>
         </table>
         <h4>イベント作成フォーム</h4>
         <form>
@@ -54,8 +57,6 @@ Amplify.configure(awsmobile);
             イベントを作成する
           </button>
         </form>
-        {/* <tbody>
-        </tbody> */}
       </div>
     </>
   );
