@@ -1,5 +1,6 @@
 import React, { useReducer, useState } from 'react';
 import Event from "./Event"
+import { CREATE_EVENT} from "../actions"
 import reducer from "../reducers/"
 import Amplify from '@aws-amplify/core';
 import awsmobile from '../aws-exports';
@@ -16,7 +17,7 @@ const App = () => {
     e.preventDefault() //クリックされた際ににリロードされることを防ぐ　
 
     dispatch({
-      type: "CREATE_EVENT",
+      type: CREATE_EVENT,
       body,
     })
 
@@ -33,7 +34,7 @@ const App = () => {
         <table>
           <thead>
             <tr>
-              <th>Body</th>
+              <th>To Do</th>
             </tr>
           </thead>
           <tbody>

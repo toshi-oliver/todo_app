@@ -1,8 +1,13 @@
 import React from "react"
 
+import { DELETE_EVENT} from "../actions"
+
 const Event = ({event ,dispatch}) => {
   const handleClickDeleteButton = () => {
-    dispatch({ type: "DELETE_EVENT", id: event.id })
+    const result = window.confirm(`このリストを本当に削除しても良いですか？`)
+    if (result) {
+      dispatch({ type: DELETE_EVENT, id: event.id })
+    }
   }
 
   return (
