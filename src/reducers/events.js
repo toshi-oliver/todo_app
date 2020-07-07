@@ -24,8 +24,6 @@ const events = (state = [], action) => {
       return [...state, {id, ...event }] //スプレッド演算子の一番後ろに要素を追加
     case DELETE_EVENT:
       return state.filter(event=> event.id !== action.id)
-    case COMPLETE_EVENT:
-      return state
 
     default:
       return state
