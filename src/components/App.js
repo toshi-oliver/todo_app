@@ -1,6 +1,6 @@
-import React, { useReducer, useState } from 'react';
-import Event from "./Event"
-import { CREATE_EVENT} from "../actions"
+import React, { useReducer } from 'react';
+import Events from "./Events"
+import EventForm from "./EventForm"
 import reducer from "../reducers/"
 // import Amplify from '@aws-amplify/core';
 // import awsmobile from '../aws-exports';
@@ -10,56 +10,13 @@ import reducer from "../reducers/"
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, [])
-  const [body, setBody] = useState("")
-  // const [status, setStatus] = useState("false")
-
-  const addEvent = e => {
-    e.preventDefault() //クリックされた際ににリロードされることを防ぐ　
-
-    dispatch({
-      type: CREATE_EVENT,
-      body,
-    })
-
-    setBody("")
-  }
-
 
   return (
-    <>
-      <div className="container">
-        <h2>
-          LISTS
-        </h2>
-        <table>
-          <thead>
-            <tr>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {state.map((event, index) => (<Event key={index} event={event} dispatch={dispatch} />))}
-          </tbody>
-        </table>
-        <form>
-          <div className="form-group">
-            <textarea
-              className="form-control"
-              id="formEventBody"
-              value={body}
-              onChange={ e => setBody(e.target.value) }
-            />
-          </div>
-          <button
-            className="btn btn-primary"
-            onClick={addEvent}
-          >
-            新規作成
-          </button>
-        </form>
-        <h2>COMPLETED</h2>
-      </div>
-    </>
+    <div className="container">
+      <Events state={state} dispatch={dispatch}/>
+      <EventForm state={state} dispatch={dispatch}/>
+      <h2>COMPLETED</h2>
+    </div>
   );
 }
 export default App
