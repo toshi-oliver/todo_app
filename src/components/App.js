@@ -10,7 +10,11 @@ import reducer from "../reducers/"
 // Amplify.configure(awsmobile);
 
 const App = () => {
-  const [state, dispatch] = useReducer(reducer, [])
+  // combineReducerによりstateは配列からオブジェクトになる。
+  const initialState = {
+    events: []
+  }
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   return (
     <AppContext.Provider value={{state, dispatch}}>
