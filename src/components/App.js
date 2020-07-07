@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react';
 import Events from "./Events"
 import EventForm from "./EventForm"
+import AppContext from "../contexts/AppContext"
 import reducer from "../reducers/"
 // import Amplify from '@aws-amplify/core';
 // import awsmobile from '../aws-exports';
@@ -12,11 +13,13 @@ const App = () => {
   const [state, dispatch] = useReducer(reducer, [])
 
   return (
-    <div className="container">
-      <Events state={state} dispatch={dispatch}/>
-      <EventForm state={state} dispatch={dispatch}/>
-      <h2>COMPLETED</h2>
-    </div>
+    <AppContext.Provider value={{state, dispatch}}>
+      <div className="container">
+        <Events />
+        <EventForm />
+        <h2>COMPLETED</h2>
+      </div>
+    </AppContext.Provider>
   );
 }
 export default App
