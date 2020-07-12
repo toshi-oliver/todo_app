@@ -4,7 +4,7 @@ import AppContext from "../contexts/AppContext"
 
 const Events = () => {
   const {state}= useContext(AppContext)
-  const uncompleteEvent = state.filter((event) => (
+  const incompleteEvent = state.filter((event) => (
     (event.status === "false" ? event: false)))
   return (
     <>
@@ -18,7 +18,7 @@ const Events = () => {
           </tr>
         </thead>
         <tbody>
-          {uncompleteEvent.map((event, index) => (<Event key={index} event={event} />))}
+          {incompleteEvent.map((event, index) => (<Event key={index} event={event} />))}
         </tbody>
       </table>
     </>
