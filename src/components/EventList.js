@@ -4,7 +4,7 @@ import AppContext from "../contexts/AppContext"
 
 const Events = () => {
   const {state}= useContext(AppContext)
-   const uncompleteEvent = state.filter((event) => (
+  const uncompleteEvent = state.filter((event) => (
     (event.status === "false" ? event: false)))
   return (
     <>
