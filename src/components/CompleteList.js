@@ -5,6 +5,9 @@ import AppContext from "../contexts/AppContext"
 const CompleteList = () => {
   const {state}= useContext(AppContext)
   console.log(state)
+  const completeEvent = state.filter((event) => (
+    (event.status === "true" ? event: false)))
+
   return (
     <>
       <h2>
@@ -13,17 +16,14 @@ const CompleteList = () => {
       <table>
         <thead>
           <tr>
-            <th>description</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          {state.filter((event, index) => (
-            (event.status === "true"?
-              <tr>
-                <td>{event.body}</td>
-                {/* <td><button type="button" onClick={handleClickDeleteButton}>削除</button></td> */}
-              </tr>
-            : false)))}
+          <tr>
+            <td>{completeEvent.body}</td>
+            <td>{completeEvent.id}</td>
+          </tr>
         </tbody>
       </table>
     </>
