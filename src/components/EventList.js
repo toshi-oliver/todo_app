@@ -4,8 +4,10 @@ import AppContext from "../contexts/AppContext"
 
 const Events = () => {
   const {state}= useContext(AppContext)
+   const uncompleteEvent = state.filter((event) => (
+    (event.status === "false" ? event: false)))
   return (
-    <> 
+    <>
       <h2>
       LISTS
       </h2>
@@ -16,7 +18,7 @@ const Events = () => {
           </tr>
         </thead>
         <tbody>
-          {state.map((event, index) => (<Event key={index} event={event} />))}
+          {uncompleteEvent.map((event, index) => (<Event key={index} event={event} />))}
         </tbody>
       </table>
     </>
