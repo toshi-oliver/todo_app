@@ -2,8 +2,9 @@ import React, { useContext } from 'react';
 // import CompleteEvent from "./CompleteEvent"
 import AppContext from "../contexts/AppContext"
 
-const CompleteLists = () => {
+const CompleteList = () => {
   const {state}= useContext(AppContext)
+  console.log(state)
   return (
     <>
       <h2>
@@ -12,22 +13,20 @@ const CompleteLists = () => {
       <table>
         <thead>
           <tr>
-            <th></th>
+            <th>description</th>
           </tr>
         </thead>
         <tbody>
-          {state.filter((event, index) => {
-            return ( event.status === "true"?
+          {state.filter((event, index) => (
+            (event.status === "true"?
               <tr>
                 <td>{event.body}</td>
                 {/* <td><button type="button" onClick={handleClickDeleteButton}>削除</button></td> */}
               </tr>
-            : false);
-          })}
+            : false)))}
         </tbody>
       </table>
     </>
   )
 }
-
-export default CompleteLists
+export default CompleteList

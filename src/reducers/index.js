@@ -27,7 +27,7 @@ const events = (state = [], action) => {
     case COMPLETE_EVENT:
       return state.map((event) => {
         if (event.id === action.id) {
-          action.status = "true";
+          event.status = "true";
         }
         return event;
         });
