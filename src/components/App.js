@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import Events from "./Events"
+import EventList from "./EventList"
 import EventForm from "./EventForm"
 import AppContext from "../contexts/AppContext"
 import reducer from "../reducers/"
@@ -15,7 +15,7 @@ const App = () => {
   return (
     <AppContext.Provider value={{state, dispatch}}>
       <div className="container">
-        <Events />
+        <EventList />
         <EventForm />
         <h2>COMPLETED</h2>
       </div>
