@@ -3,9 +3,9 @@ import { CREATE_EVENT} from "../actions"
 import AppContext from "../contexts/AppContext"
 
 const EventForm = () => {
-  const { dispatch} = useContext(AppContext)
+  const { dispatch } = useContext(AppContext)
   const [body, setBody] = useState("")
-  // const [status, setStatus] = useState("false")
+  const [status] = useState("false")
 
   const addEvent = e => {
     e.preventDefault() //クリックされた際ににリロードされることを防ぐ　
@@ -13,8 +13,8 @@ const EventForm = () => {
     dispatch({
       type: CREATE_EVENT,
       body,
+      status
     })
-
     setBody("")
   }
   return (

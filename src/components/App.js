@@ -3,6 +3,7 @@ import EventList from "./EventList"
 import EventForm from "./EventForm"
 import AppContext from "../contexts/AppContext"
 import reducer from "../reducers/"
+import CompleteList from './CompleteList';
 // import Amplify from '@aws-amplify/core';
 // import awsmobile from '../aws-exports';
 // import { withAuthenticator } from '@aws-amplify/ui-react';
@@ -10,6 +11,10 @@ import reducer from "../reducers/"
 // Amplify.configure(awsmobile);
 
 const App = () => {
+  // combineReducerによりstateは配列からオブジェクトになる。
+  // const initialState = {
+  //   events: []
+  // }
   const [state, dispatch] = useReducer(reducer, [])
 
   return (
@@ -17,7 +22,7 @@ const App = () => {
       <div className="container">
         <EventList />
         <EventForm />
-        <h2>COMPLETED</h2>
+        <CompleteList />
       </div>
     </AppContext.Provider>
   );

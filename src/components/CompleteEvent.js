@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 
-import { COMPLETE_EVENT, DELETE_EVENT } from "../actions"
+import { DELETE_EVENT } from "../actions"
 import AppContext from "../contexts/AppContext"
 
 const Event = ({event}) => {
@@ -12,14 +12,9 @@ const Event = ({event}) => {
     }
   }
 
-  const handleClickCompleteButton = () => {
-    dispatch({ type: COMPLETE_EVENT, id: event.id })
-  }
-
   return (
     <tr>
       <td>{event.body}</td>
-      <td><button type="button" onClick={handleClickCompleteButton}>完了</button></td>
       <td><button type="button" onClick={handleClickDeleteButton}>削除</button></td>
     </tr>
   )

@@ -23,9 +23,14 @@ const events = (state = [], action) => {
       const id = length === 0 ? 1 : state[length -1].id + 1
       return [...state, {id, ...event }] //スプレッド演算子の一番後ろに要素を追加
     case DELETE_EVENT:
-      return state.filter(event=> event.id !== action.id)
+      return state.filter(event => event.id !== action.id)
     case COMPLETE_EVENT:
-      return state
+      return state.map((event) => {
+        if (event.id === action.id) {
+          event.status = "true";
+        }
+        return event;
+        });
 
     default:
       return state
