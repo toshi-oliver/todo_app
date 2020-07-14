@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { CREATE_EVENT} from "../actions"
 import AppContext from "../contexts/AppContext"
+import { Link } from "react-router-dom"
+
 
 const EventForm = () => {
   const { dispatch } = useContext(AppContext)
@@ -8,7 +10,7 @@ const EventForm = () => {
   const [status] = useState("false")
 
   const addEvent = e => {
-    e.preventDefault() //クリックされた際ににリロードされることを防ぐ　
+    e.preventDefault() //クリックされた際にリロードされることを防ぐ　
 
     dispatch({
       type: CREATE_EVENT,
@@ -17,6 +19,8 @@ const EventForm = () => {
     })
     setBody("")
   }
+
+  const unCreatable = body === "";
   return (
     <>
       <h2>
@@ -34,9 +38,12 @@ const EventForm = () => {
         <button
           className="btn btn-primary"
           onClick={addEvent}
+          disabled={unCreatable}
+
         >
-          新規作成
+          登録
         </button>
+        <button className="btn btn-pink"><Link to="/"　style={{ textDecoration: 'none' }}>戻る</Link></button>
       </form>
     </>
   )
