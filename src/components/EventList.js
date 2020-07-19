@@ -1,31 +1,45 @@
 import React, { useContext } from 'react';
-import Event from "./Event"
-import AppContext from "../contexts/AppContext"
-import { Link } from "react-router-dom"
+import Event from "./Event";
+import AppContext from "../contexts/AppContext";
+import Auth from '@aws-amplify/auth';
+import { Button } from 'evergreen-ui';
+import { Table } from 'evergreen-ui';
 
 const EventList = () => {
   const {state}= useContext(AppContext)
   const incompleteEvent = state.filter((event) => (
-    (event.status === "false" ? event: false)))
-  return (
-    <>
-      <h2>
-      LISTS
-      </h2>
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {incompleteEvent.map((event, index) => (<Event key={index} event={event} />))}
-        </tbody>
-      </table>
+    (event.status === "false")))
 
-      <button className="btn btn-pink"><Link to="/new"　style={{ textDecoration: 'none' }}>新規作成</Link></button>
-    </>
-  )
-}
+  const signOut = () => {
+    Auth.signOut()
+      .then(data => console.log(data))
+      .catch(err => console.log(err));
+    }
 
-export default EventList
+    return (
+      <>
+        <Button marginRight={16} intent="warning" onClick={signOut}>
+          ログアウト
+        </Button>
+        <h2>
+          TODO LIST
+        </h2>
+        <Table>
+          <Table.Head>
+            <Table.TextHeaderCell>List</Table.TextHeaderCell>
+          </Table.Head>
+          <Table.Body>
+            {incompleteEvent.map((event, index) => (
+            <Table.Row key={index}>
+              <Table.TextCell>
+                <Event event={event} />
+              </Table.TextCell>
+            </Table.Row>))}
+          </Table.Body>
+        </Table>
+        <Button is="a" href="/new" marginRight={12} height={40} appearance="primary" intent="success">新規作成</Button>
+      </>
+    )
+  }
+
+  export default EventList

@@ -1,4 +1,4 @@
-import { CREATE_EVENT, DELETE_EVENT, COMPLETE_EVENT} from "../actions"
+import { INITIAL_QUERY, CREATE_EVENT, DELETE_EVENT, COMPLETE_EVENT} from "../actions"
 
 // action = {
 //  id: 1
@@ -17,6 +17,8 @@ import { CREATE_EVENT, DELETE_EVENT, COMPLETE_EVENT} from "../actions"
 //
 const events = (state = [], action) => {
   switch(action.type) {
+    case INITIAL_QUERY:
+      return action.event;
     case CREATE_EVENT:
       const event = { body: action.body ,status: action.status}
       const length = state.length

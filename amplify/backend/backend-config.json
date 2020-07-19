@@ -1,6 +1,6 @@
 {
 	"auth": {
-		"todoapp378c40fa": {
+		"todoapp8ccda7c0": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": [],
@@ -17,7 +17,7 @@
 					"defaultAuthentication": {
 						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
 						"userPoolConfig": {
-							"userPoolId": "authtodoapp378c40fa"
+							"userPoolId": "authtodoapp8ccda7c0"
 						}
 					}
 				}

@@ -1,4 +1,6 @@
 type Todo @model @auth(rules: [{ allow: owner }]) {
-	id: ID!
-	content: String!
+	id: ID
+	body: String!
+	status: String!
+	timestamp: AWSTimestamp!
 }
