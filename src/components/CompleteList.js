@@ -5,10 +5,24 @@ import AppContext from "../contexts/AppContext"
 const CompleteList = () => {
   const {state}= useContext(AppContext)
   const completeEvent = state.filter((event) => (
-    (event.status === "true" ? event: false)))
-  console.log(completeEvent)
+    (event.status === "true")))
 
-  return (
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const result = await API.graphql(graphqlOperation(listTodos, {
+  //       filter: {
+  //         status: {
+  //             eq: " true"
+  //         }
+  //       }
+  //     }));
+  //     console.log(result);
+  //     setCompleted(result.data.listTodos.items)
+  //   }
+  //   fetchData();
+  // }, [state]);
+
+    return (
     <>
       <h2>
       COMPLETED

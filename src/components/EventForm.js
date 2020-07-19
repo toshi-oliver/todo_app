@@ -1,7 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { CREATE_EVENT} from "../actions"
-import AppContext from "../contexts/AppContext"
-import { Link } from "react-router-dom"
+import { CREATE_EVENT} from "../actions";
+import AppContext from "../contexts/AppContext";
+import { Link } from "react-router-dom";
+import API, { graphqlOperation } from '@aws-amplify/api';
+import { createTodo } from "../graphql/mutations";
 
 
 const EventForm = () => {
@@ -9,14 +11,19 @@ const EventForm = () => {
   const [body, setBody] = useState("")
   const [status] = useState("false")
 
-  const addEvent = e => {
+  const addEvent = async (e) => {
     e.preventDefault() //クリックされた際にリロードされることを防ぐ　
-
     dispatch({
       type: CREATE_EVENT,
       body,
       status
     })
+    const res = await API.graphql(graphqlOperation(createTodo,  { input: {
+      body: body,
+      status: status,
+      timestamp: Math.floor(Date.now() / 1000),
+    }}));
+    console.log(res)
     setBody("")
   }
 
@@ -39,7 +46,6 @@ const EventForm = () => {
           className="btn btn-primary"
           onClick={addEvent}
           disabled={unCreatable}
-
         >
           登録
         </button>
