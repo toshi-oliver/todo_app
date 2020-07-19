@@ -10,7 +10,6 @@ import awsmobile from '../aws-exports';
 import { withAuthenticator } from 'aws-amplify-react';
 import API, { graphqlOperation } from '@aws-amplify/api';
 import { listTodos } from '../graphql/queries';
-// import { createTodo } from "../graphql/mutations";
 
 Amplify.configure(awsmobile);
 
@@ -26,6 +25,7 @@ const App = () => {
     const appState =  await API.graphql(graphqlOperation(listTodos))
     dispatch({ type: INITIAL_QUERY, event: appState.data.listTodos.items })
   }
+  
   useEffect(() => {
     getEvents(INITIAL_QUERY)
   })

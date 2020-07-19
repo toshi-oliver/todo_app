@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.1.2",
     "aws-amplify": "^3.0.18",
     "aws-amplify-react": "^4.1.17",
+    "evergreen-ui": "^4.28.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",

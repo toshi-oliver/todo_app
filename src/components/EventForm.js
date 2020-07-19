@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { CREATE_EVENT} from "../actions";
 import AppContext from "../contexts/AppContext";
-import { Link } from "react-router-dom";
 import API, { graphqlOperation } from '@aws-amplify/api';
 import { createTodo } from "../graphql/mutations";
+import { Button, Textarea } from 'evergreen-ui'
 
 
 const EventForm = () => {
@@ -13,17 +13,16 @@ const EventForm = () => {
 
   const addEvent = async (e) => {
     e.preventDefault() //クリックされた際にリロードされることを防ぐ　
+    await API.graphql(graphqlOperation(createTodo,  { input: {
+      body: body,
+      status: status,
+      timestamp: Math.floor(Date.now() / 1000),
+    }}));
     dispatch({
       type: CREATE_EVENT,
       body,
       status
     })
-    const res = await API.graphql(graphqlOperation(createTodo,  { input: {
-      body: body,
-      status: status,
-      timestamp: Math.floor(Date.now() / 1000),
-    }}));
-    console.log(res)
     setBody("")
   }
 
@@ -34,22 +33,28 @@ const EventForm = () => {
       POST
       </h2>
       <form>
-        <div className="form-group">
-          <textarea
-            className="form-control"
-            id="formEventBody"
+        <div>
+          <Textarea
+            placeholder="やることを入力してください"
             value={body}
             onChange={ e => setBody(e.target.value) }
           />
         </div>
-        <button
-          className="btn btn-primary"
+        <Button 
+          marginRight={12} 
+          height={40} 
+          appearance="primary"
+          intent="none"
           onClick={addEvent}
           disabled={unCreatable}
         >
           登録
-        </button>
-        <button className="btn btn-pink"><Link to="/"　style={{ textDecoration: 'none' }}>戻る</Link></button>
+        </Button>
+        <Button
+          is="a" href="/"
+          marginRight={12}
+          height={40}
+          iconBefore="arrow-left">戻る</Button>
       </form>
     </>
   )

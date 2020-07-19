@@ -4,6 +4,7 @@ import { COMPLETE_EVENT, DELETE_EVENT } from "../actions"
 import AppContext from "../contexts/AppContext"
 import API, { graphqlOperation } from '@aws-amplify/api';
 import { updateTodo,deleteTodo } from '../graphql/mutations';
+import { Button, Table } from 'evergreen-ui'
 
 const Event = ({event}) => {
   const { dispatch } = useContext(AppContext)
@@ -24,11 +25,11 @@ const Event = ({event}) => {
   }
 
   return (
-    <tr>
-      <td>{event.body}</td>
-      <td><button type="button" onClick={() => handleClickCompleteButton(event.id)}>完了</button></td>
-      <td><button type="button" onClick={() => handleClickDeleteButton(event.id)}>削除</button></td>
-    </tr>
+    <Table.Row>
+      <Table.TextCell>{event.body}</Table.TextCell>
+      <Button marginRight={12} height={40} appearance="primary" intent="none" onClick={() => handleClickCompleteButton(event.id)}>完了</Button>
+      <Button marginRight={12} height={40} appearance="primary" iconBefore="trash" intent="danger" onClick={() => handleClickDeleteButton(event.id)}>削除</Button>
+    </Table.Row>
   )
 }
 
