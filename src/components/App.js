@@ -25,7 +25,7 @@ const App = () => {
     const appState =  await API.graphql(graphqlOperation(listTodos))
     dispatch({ type: INITIAL_QUERY, event: appState.data.listTodos.items })
   }
-  
+
   useEffect(() => {
     getEvents(INITIAL_QUERY)
   })

@@ -19,8 +19,8 @@ const CompleteList = () => {
           <Table.TextHeaderCell>Completed</Table.TextHeaderCell>
         </Table.Head>
         <Table.Body>
-            {completeEvent.map((event,index) => (
-            <Table.Row key={index}>
+            {completeEvent.map((event) => (
+            <Table.Row key={event.id}>
               <Table.TextCell>
                 <CompleteEvent event={event} />
               </Table.TextCell>

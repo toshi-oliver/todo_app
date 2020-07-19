@@ -29,8 +29,8 @@ const EventList = () => {
             <Table.TextHeaderCell>List</Table.TextHeaderCell>
           </Table.Head>
           <Table.Body>
-            {incompleteEvent.map((event, index) => (
-            <Table.Row key={index}>
+            {incompleteEvent.map((event) => (
+            <Table.Row key={event.id}>
               <Table.TextCell>
                 <Event event={event} />
               </Table.TextCell>

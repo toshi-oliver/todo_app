@@ -1,13 +1,13 @@
-import React, { useContext, useState } from 'react';
-import { CREATE_EVENT} from "../actions";
-import AppContext from "../contexts/AppContext";
+import React, { useState } from 'react';
+// import { CREATE_EVENT} from "../actions";
+// import AppContext from "../contexts/AppContext";
 import API, { graphqlOperation } from '@aws-amplify/api';
 import { createTodo } from "../graphql/mutations";
 import { Button, Textarea } from 'evergreen-ui'
 
 
 const EventForm = () => {
-  const { dispatch } = useContext(AppContext)
+  // const { dispatch } = useContext(AppContext)
   const [body, setBody] = useState("")
   const [status] = useState("false")
 
@@ -18,11 +18,11 @@ const EventForm = () => {
       status: status,
       timestamp: Math.floor(Date.now() / 1000),
     }}));
-    dispatch({
-      type: CREATE_EVENT,
-      body,
-      status
-    })
+    // dispatch({
+    //   type: CREATE_EVENT,
+    //   body,
+    //   status
+    // })
     setBody("")
   }
 

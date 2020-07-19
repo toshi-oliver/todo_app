@@ -1,4 +1,4 @@
-import { INITIAL_QUERY, CREATE_EVENT, DELETE_EVENT, COMPLETE_EVENT} from "../actions"
+import { INITIAL_QUERY, CREATE_EVENT, DELETE_EVENT} from "../actions"
 
 // action = {
 //  id: 1
@@ -26,13 +26,13 @@ const events = (state = [], action) => {
       return [...state, {id, ...event }] //スプレッド演算子の一番後ろに要素を追加
     case DELETE_EVENT:
       return state.filter(event => event.id !== action.id)
-    case COMPLETE_EVENT:
-      return state.map((event) => {
-        if (event.id === action.id) {
-          event.status = "true";
-        }
-        return event;
-        });
+    // case COMPLETE_EVENT:
+    //   return state.map((event) => {
+    //     if (event.id === action.id) {
+    //       event.status = "true";
+    //     }
+    //     return event;
+    //     });
 
     default:
       return state
