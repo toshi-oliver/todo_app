@@ -1,26 +1,22 @@
 import React, { useContext } from 'react';
 import Event from "./Event";
 import AppContext from "../contexts/AppContext";
-import Auth from '@aws-amplify/auth';
-import { Button } from 'evergreen-ui';
-import { Table } from 'evergreen-ui';
+import { Table, Button } from 'evergreen-ui';
+import {  AmplifyAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+
 
 const EventList = () => {
   const {state}= useContext(AppContext)
   const incompleteEvent = state.filter((event) => (
     (event.status === "false")))
 
-  const signOut = () => {
-    Auth.signOut()
-      .then(data => console.log(data))
-      .catch(err => console.log(err));
-    }
-
     return (
       <>
-        <Button marginRight={16} intent="warning" onClick={signOut}>
-          ログアウト
-        </Button>
+        <AmplifyAuthenticator>
+          <div style={{width: "60px"}}>
+            <AmplifySignOut buttonText="ログアウト"></AmplifySignOut>
+          </div>
+        </AmplifyAuthenticator>
         <h2>
           TODO LIST
         </h2>
@@ -29,8 +25,8 @@ const EventList = () => {
             <Table.TextHeaderCell>List</Table.TextHeaderCell>
           </Table.Head>
           <Table.Body>
-            {incompleteEvent.map((event, index) => (
-            <Table.Row key={index}>
+            {incompleteEvent.map((event) => (
+            <Table.Row key={event.id}>
               <Table.TextCell>
                 <Event event={event} />
               </Table.TextCell>
