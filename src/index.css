@@ -1,0 +1,7 @@
+:root {
+  --themeColor: darkslateblue;
+  --hoverColor: rgb(105, 95, 171); 
+  --amplify-primary-color: darkslateblue;
+  --amplify-primary-tint: rgb(39, 39, 151); 
+  --amplify-primary-shade: rgb(105, 95, 171);
+}

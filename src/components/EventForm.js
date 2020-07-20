@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 // import AppContext from "../contexts/AppContext";
 import API, { graphqlOperation } from '@aws-amplify/api';
 import { createTodo } from "../graphql/mutations";
-import { Button, Textarea } from 'evergreen-ui'
+import { Button, Textarea } from 'evergreen-ui';
 
 
 const EventForm = () => {
